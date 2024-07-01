@@ -1,7 +1,15 @@
 package jpabook.jpashop.domain.item;
 
-import java.security.PrivateKey;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
 
+@Entity
+@DiscriminatorValue("M")
+@Getter
+@Setter
 public class Movie extends Item {
-    private
+    private String artist;
+    private String etc;
 }

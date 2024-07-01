@@ -18,14 +18,22 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) //order를 조회할 때 꼭 member를 같이 조회하겠다는 뜻
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne
+//    persist(orderItemA)
+//    persist(orderItemB)
+//    persist(orderItemC)
+//    persist(order)
+//    엔티티 별 각각에 영속화(퍼시스트) 해줘야한다
+//    그런데 cascade를해주면 영속화를 자동으로해줘서 아래같이 오더만영속화해주면됨
+//    persist(order)
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
@@ -33,4 +41,21 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status; //주문상태 [ORDER, CANCEL]
+
+    //==연관관계 편의 메서드 (양방향일때 좋다)==//
+    public void setMember(Member member) {
+        this.member = member;
+        member.getOrders().add(this);
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+        delivery.setOrder(this);
+    }
+
 }

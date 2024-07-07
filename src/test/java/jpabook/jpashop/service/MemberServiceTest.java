@@ -46,12 +46,9 @@ public class MemberServiceTest {
         Member member2 = new Member();
         member2.setName("byun");
 
-        Member member3 = new Member();
-        member3.setName("byun");
         //when
         memberService.join(member1);
         memberService.join(member2); //예외발생 해야 함.
-        memberService.join(member3);
         //then
         fail("예외가 발생해야 한다.");
     }

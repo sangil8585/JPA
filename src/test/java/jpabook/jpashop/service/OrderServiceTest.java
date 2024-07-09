@@ -84,7 +84,7 @@ public class OrderServiceTest {
     public void 주문취소() throws Exception {
         // given
         Member member = createMember();
-        Book item = createBook("시골 JPA", 10000, 10);
+        Book item = createBook("JPA 기초", 10000, 10);
 
         int orderCount = 2;
 

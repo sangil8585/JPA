@@ -34,7 +34,7 @@ public class OrderController {
         return "order/orderForm";
     }
 
-    @PostMapping  // @RequestParam FormSubmit 방식
+    @PostMapping("/order")  // @RequestParam FormSubmit 방식
     public String order(@RequestParam("memberId") Long memberId,
                         @RequestParam("itemId") Long itemId,
                         @RequestParam("count") int count) {

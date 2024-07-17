@@ -39,8 +39,10 @@ public class OrderController {
                         @RequestParam("itemId") Long itemId,
                         @RequestParam("count") int count) {
 
-        orderService.order(memberId, itemId, count);
+        // 주문 결과 페이지를 만들게되면 아래와같이 하면되겠지
+//        Long order = orderService.order(memberId, itemId, count);
 
+        orderService.order(memberId, itemId, count);
         return "redirect:/orders";
     }
 }

@@ -27,6 +27,7 @@ public class initDb {
     public void init() {
         initService.dbInit1();
         initService.dbInit2();
+        initService.dbInit3();
     }
 
     @Component
@@ -91,5 +92,25 @@ public class initDb {
             member.setAddress(new Address(city, street, zipcode));
             return member;
         }
+
+        public void dbInit3() {
+            Member member = createMember("userC", "부산", "3", "3333");
+            em.persist(member);
+
+            Book book1 = createBook("JAVA BOOK1", 40000, 200);
+            em.persist(book1);
+
+            Book book2 = createBook("JAVA BOOK2", 50000, 300);
+            em.persist(book2);
+
+            OrderItem orderItem1 = OrderItem.createOrderItem(book1, 40000, 3);
+            OrderItem orderItem2 = OrderItem.createOrderItem(book2, 50000, 4);
+
+
+            Delivery delivery = createDelivery(member);
+            Order order = Order.createOrder(member, delivery, orderItem1, orderItem2);
+            em.persist(order);
+        }
+
     }
 }

@@ -98,4 +98,13 @@ public class OrderRepository {
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 1000건
         return query.getResultList();
     }
+
+    // 레이지를 무시하고 값을 채워서 객체값을 채워가져온다. 이게 fetch join
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(
+            "select  o from Order o" +
+                    " join fetch o.member m" +
+                    " join fetch o.delivery d", Order.class
+        ).getResultList();
+    }
 }

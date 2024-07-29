@@ -9,18 +9,13 @@ import org.springframework.context.annotation.Bean;
 public class JpashopApplication {
 
     public static void main(String[] args) {
-//        Hello hello = new Hello();
-//        hello.setData("하이영");
-//        String data = hello.getData();
-//        System.out.println("data = " + data);
-
         SpringApplication.run(JpashopApplication.class, args);
     }
 
     @Bean
     Hibernate5Module hibernate5Module() {
         Hibernate5Module hibernate5Module = new Hibernate5Module();
-        hibernate5Module.configure(Hibernate5Module.Feature.FORCE_LAZY_LOADING, true);
+//        hibernate5Module.configure(Hibernate5Module.Feature.FORCE_LAZY_LOADING, true);
         return hibernate5Module;
     }
 }

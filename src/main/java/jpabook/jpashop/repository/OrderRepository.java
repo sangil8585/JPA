@@ -96,6 +96,7 @@ public class OrderRepository {
         }
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 1000건
+        System.out.println("dd");
         return query.getResultList();
     }
 
@@ -106,5 +107,6 @@ public class OrderRepository {
                     " join fetch o.member m" +
                     " join fetch o.delivery d", Order.class
         ).getResultList();
+
     }
 }
